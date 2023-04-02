@@ -1,45 +1,30 @@
-let form = document.getElementById('weatherForm') //ID in the form tag
+let form2 = document.getElementById('pokeForm') //ID in the form tag
 
-form.addEventListener('submit',handler) //upon form submission, run handler function
+form2.addEventListener('submit',handler) //upon form submission, run handler function
 
 async function handler(event){
     
 
     event.preventDefault() //prevent event from refreshing page
-    let cityName = event.target.cityName.value //the user input
-    console.log(cityName)
+    let pokeName = event.target.pokeName.value //the user input
+    console.log(pokeName)
 
-    let WeatherInfo = await getWeather(cityName) //pass city name from user into the getWeather function to be defined later
-    console.log(WeatherInfo)
-    buildWeatherCard(WeatherInfo) //pass in weather info from the api call that will be used to build the html
+    let pokeInfo = await getPoke(pokeName) 
+    console.log(pokeInfo)
+    buildPokeCard(pokeInfo) 
 
-    console.log(cityName)
-
-
-
+    console.log(pokeName)
 
     //clear input box
-    event.target.cityName.value = '';
-
-
+    event.target.pokeName.value = '';
 
 }
 
 
 
-//make the api call
-
-//async func returns a promise, dont throw an error right away, wait for the response before you continue, but keep running other stuff
-//async means I dont know how long this function takes to run
-//if you dont await in an async then an empty promise will be returned
-
-//api calls are made internally to connect data 
-//return dictionary objects in python to be used in other languages 
-
-
-async function getWeather(cityName){
+async function getPoke(pokeName){
     try{
-        let response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${cityName}&aqi=no`) //build url
+        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`) //build url
         let data = await response.json()
         
         return data //return what you want to grab from the json
@@ -52,44 +37,42 @@ async function getWeather(cityName){
 
 //need to return temp, feels like and condition in the card
 
-function buildWeatherCard(weatherData){
+function buildPokeCard(pokeData){
     let card = document.createElement('div')
-    card.className = 'card h-100'
-    card.Id = 'cardid'//`${weatherData.location.name}-card`
+    card.className = 'pokecard h-100'
+    card.Id = 'cardid'
 
     let cardBody = document.createElement('div')
     cardBody.className = 'card-body'
 
     let title = document.createElement('h4')
-    title.innerHTML = weatherData.location.name //find the city title in the weather dict
+    title.innerHTML = pokeData.name 
     title.className = 'city-card-title'
 
-    //create an unordered list to display temp, feels like, humidity and wind
+    let weight = document.createElement('p')
+    weight.innerHTML = `Weight: ${pokeData.weight}`
+    weight.className = 'weight-data'
 
-    let temp = document.createElement('p')
-    temp.innerHTML = `Current temperature: ${weatherData.current.temp_f}`// find the current temp in the weather dict
-    temp.className = 'temp-data'
+    let height = document.createElement('p')
+    height.innerHTML = `Height: ${pokeData.height}`
+    height.className = 'height-data'
 
-    let wind = document.createElement('p')
-    wind.innerHTML = `Wind: ${weatherData.current.wind_mph}`
-    wind.className = 'temp-data'
-
-    let midity = document.createElement('p')
-    midity.innerHTML = `Humidity: ${weatherData.current.humidity}`
-    midity.className = 'temp-data'
-    
-
+    let image = document.createElement('img');
+    image.className = 'card-img-top';
+    image.src = pokeData.sprites.front_default;
+          
 
 
     cardBody.append(title);
-    cardBody.append(temp)
-    cardBody.append(wind)
-    cardBody.append(midity)
+    cardBody.append(weight)
+    cardBody.append(height)
+    card.append(image);
+
 
     card.append(cardBody)
 
-    let weatherDisplay = document.getElementById('display')
-    weatherDisplay.append(card)    
+    let pokeDisplay = document.getElementById('poke-display')
+    pokeDisplay.prepend(card)    
 
 
 }

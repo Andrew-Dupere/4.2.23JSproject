@@ -14,9 +14,9 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light mx-5 px-3" style="background-color: #dddede">
+     <nav class="navbar navbar-expand-lg px-5 " style="background-color: #33db89">
   <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-c  ontrols="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -26,7 +26,10 @@
         <a class="nav-link" href="#">Home </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Weather</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pokemon</a>
       </li>
 
     </ul>
@@ -34,31 +37,55 @@
   </div>
 </nav>
 
+<div class="container">
+<div class="row">
+    <div class="col-md-5 mt-5">
+        <form action="" id="weatherForm">
+            <div class="form-group">
+                <input type="text" name="cityName" class="form-control" placeholder="Enter City Name">
+                <input type="submit" value="Submit" class="btn btn-primary w-100 mt-3">
+            </div>
+        </form>
 
-<!-- make a form to take in weather information -->
-<!-- countryForm => weatherForm 
-     countryName => cityName
+        
 
--->
-<div class="col-md-4 offset-md-4 mt-5">
-    <form action="" id="weatherForm">
-        <div class="form-group">
-            <input type="text" name="cityName" class="form-control" placeholder="Enter City Name">
-            <input type="submit" value="Submit" class="btn btn-dark w-100 mt-3">
+        <h4 class="text-center mt-3">Weather Data</h4>
+        <div class="row" id="display">
+            
+        
+
         </div>
-    </form>
 
-<!-- make a section to display weather information -->
+    </div>
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-5 mt-5 text-center">
+        <form action="" id="pokeForm">
+            <div class="form-group">
+                <input type="text" name="pokeName" class="form-control" placeholder="Enter Pokemon Name">
+                <input type="submit" value="Submit" class="btn btn-success w-100 mt-3">
+            </div>
+        </form>
+
+        <h4 class="text-center mt-3">Pokemon Data</h4>
+        <div class="row" id="poke-display">
+            
+        
+
+        </div>
 
 
-<div class="row" id="display">
-    <h4 class="text-center mt-3">Weather Data</h4>
-   
+
+
+
+
+
+    </div>
+
 
 </div>
-
-
-
     
 </body>
 </html>

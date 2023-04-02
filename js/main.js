@@ -19,8 +19,6 @@ async function handler(event){
     console.log(cityName)
 
 
-
-
     //clear input box
     event.target.cityName.value = '';
 
@@ -29,7 +27,7 @@ async function handler(event){
 }
 
 
-
+//JS NOTES
 //make the api call
 
 //async func returns a promise, dont throw an error right away, wait for the response before you continue, but keep running other stuff
@@ -52,8 +50,6 @@ async function getWeather(cityName){
 }
 
 //build the card to hold the weather data
-
-//need to return temp, feels like and condition in the card
 
 function buildWeatherCard(weatherData){
     let card = document.createElement('div')
@@ -92,7 +88,7 @@ function buildWeatherCard(weatherData){
     card.append(cardBody)
 
     let weatherDisplay = document.getElementById('display')
-    weatherDisplay.append(card)    
+    weatherDisplay.prepend(card)    
 
 
 }
